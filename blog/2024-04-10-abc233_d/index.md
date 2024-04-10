@@ -5,14 +5,159 @@ authors: [tame]
 tags: [atcoder, abc]
 ---
 
-test
+$$N=2×10^5$$ のとき、整数の組 $$(l,r)$$ を全探索すると、 $$1+2+3+,+...+,+2×10^5=\dfrac{1}{2}×2×10^5×(2×10^5+1)=2×10^{10}+10^5$$ となり、制限時間2秒以内では処理できない。
 
-Let $f\colon[a,b]\to\R$ be Riemann integrable. Let $F\colon[a,b]\to\R$ be
-$F(x)=\int_{a}^{x} f(t)\,dt$. Then $F$ is continuous, and at all $x$ such that
-$f$ is continuous at $x$, $F$ is differentiable at $x$ with $F'(x)=f(x)$.
+今回、導き出す答えは整数の組の数だけでよい。効率的に数えられる方法を考える。
 
-[提出結果](https://atcoder.jp/contests/abc336/submissions/52198162)
+以下の入力を例に考える。
+
+$$
+N=6,\\
+K=5,\\
+A=(8,-3,5,3,0,-4)
+$$
+
+まずは $$l=1$$ の場合、 $$r=1,2,...,6$$ の場合を1つずつ確認してく。これは数列 $$A$$ の累積和を求める作業と同じ。
+
+| $$r$$ |1|2|3|4|5|6|
+|-|-|-|-|-|-|-|
+|数列 $$A$$ |8|-3|5|3|0|-4|
+|累積和（以後、 $$CS$$ とする）|8|5|10|13|13|9|
+
+$$r=2$$ のとき、つまり $$(l=1,r=2)$$ の数列の和は $$5$$ となる。逆にそれ以外において和が $$5$$ となるような $$r$$ は存在しない。
+
+続いて $$l=2$$ の場合。この場合の累積和は $$CS$$ から初項の値 $$8$$ を引くと求められる。
+
+| $$r$$ |1|2|3|4|5|6|
+|-|-|-|-|-|-|-|
+| $$CS$$ |8|5|10|13|13|9|
+| $$l=2$$ のとき|0|-3|2|5|5|1|
+
+$$r=4,5$$ つまり $$(2,4),(2,5)$$ が条件を満たす組み合わせとなる。
+
+しかし、$$l$$ に $$1$$ を加算する度に累積和を求めていてはタイムアウトとなってしまうため、 $$r=2$$ 以降の場合でも最初に求めた累積和 $$CS$$ を使って数えていきたい。
+
+2つの累積和を見比べると、$$r=2$$のときは、$$K$$ に初項 $$8$$ を足した数の $$13$$ を探していることがわかる。
+
+つまり、 $$l$$ に $$1$$ を加算する度に $$K$$ に $$A$$ の $$l-1$$ 項の数を足していき、 $$CS$$ から常に最新の $$K$$ の値の数を数えれば良い。ただし、$$l\le{r}$$ となるように注意すること。
+
+この場合、$$r$$ （連続部分列の右端の位置）は不要である。つまり、累積和 $$CS$$ の各項の値がそれぞれ何個存在するかを格納出来れば良い。
+
+辞書側に累積和の各項の値の数を加算していき、 $$l$$ に $$1$$ を加算する度に $$CS$$ の $$l-1$$ 番目の値を辞書から1つ減算する。
+
+[提出結果](https://atcoder.jp/contests/abc233/submissions/52212015)
 
 ```csharp title="C#"
-test
+using System.Text;
+
+public class Program
+{
+    public static void Main()
+    {
+        DisableAutoFlush();
+        Solve.Run();
+        Flush();
+    }
+
+    public static class Solve
+    {
+        public static void Run()
+        {
+            var inputs = ReadLineLongs();
+            int iN = (int)inputs[0];
+            long iK = inputs[1];
+            var iA = ReadLineLongs();
+
+            var cs = new long[iN];
+
+            for (int i = 0; i < iN; i++)
+            {
+                cs[i] = iA[i];
+                if (1 <= i)
+                    cs[i] += cs[i - 1];
+            }
+
+            var dic = new Dictionary<long, long>();
+
+            foreach (var sum in cs)
+            {
+                dic.TryAdd(sum, 0L);
+                dic[sum]++;
+            }
+
+            var result = 0L;
+
+            for (int i = 0; i < iN; i++)
+            {
+                var tsum = i == 0 ? 0L : cs[i - 1];
+
+                if (1 <= i)
+                    dic[tsum]--;
+
+                result += dic.TryGetValue(iK + tsum, out var count) ? count : 0L;
+            }
+
+            Console.WriteLine(result);
+        }
+
+        // ----------------------------------------------------------------------------------------------------
+        // --- Readline
+        // ----------------------------------------------------------------------------------------------------
+        public static double ReadLineDouble() => double.Parse(ReadLineString());
+        public static double[] ReadLineDoubles() => ReadLineStrings().Select(double.Parse).ToArray();
+        public static double[] ReadLinesDoubles(int height) => Enumerable.Range(0, height).Select(_ => ReadLineDouble()).ToArray();
+        public static double[][] ReadLinesDoubleMatrix(int height) => Enumerable.Range(0, height).Select(_ => ReadLineDoubles()).ToArray();
+        public static decimal ReadLineDecimal() => decimal.Parse(ReadLineString());
+        public static decimal[] ReadLineDecimals() => ReadLineStrings().Select(decimal.Parse).ToArray();
+        public static decimal[] ReadLinesDecimals(int height) => Enumerable.Range(0, height).Select(_ => ReadLineDecimal()).ToArray();
+        public static decimal[][] ReadLinesDecimalMatrix(int height) => Enumerable.Range(0, height).Select(_ => ReadLineDecimals()).ToArray();
+        public static int ReadLineInt() => int.Parse(ReadLineString());
+        public static int[] ReadLineInts() => ReadLineStrings().Select(int.Parse).ToArray();
+        public static int[] ReadLinesInts(int height) => Enumerable.Range(0, height).Select(_ => ReadLineInt()).ToArray();
+        public static int[][] ReadLinesIntMatrix(int height) => Enumerable.Range(0, height).Select(_ => ReadLineInts()).ToArray();
+        public static long ReadLineLong() => long.Parse(ReadLineString());
+        public static long[] ReadLineLongs() => ReadLineStrings().Select(long.Parse).ToArray();
+        public static long[] ReadLinesLongs(int height) => Enumerable.Range(0, height).Select(_ => ReadLineLong()).ToArray();
+        public static long[][] ReadLinesLongMatrix(long height) => Enumerable.Range(0, (int)height).Select(_ => ReadLineLongs()).ToArray();
+        public static string ReadLineString() => Console.ReadLine().TrimStart().TrimEnd();
+        public static string[] ReadLineStrings() => Console.ReadLine().TrimStart().TrimEnd().Split();
+        public static string[] ReadLinesStrings(int height) => Enumerable.Range(0, height).Select(_ => ReadLineString()).ToArray();
+        public static string[][] ReadLinesStringMatrix(int height) => Enumerable.Range(0, height).Select(_ => ReadLineStrings()).ToArray();
+        public static char[][] ReadLinesCharMatrix(int height) => Enumerable.Range(0, height).Select(_ => ReadLineString().ToCharArray()).ToArray();
+
+        // ----------------------------------------------------------------------------------------------------
+        // --- Math
+        // ----------------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Returns a specified number raised to the specified power.
+        /// </summary>
+        /// <returns>The number x raised to the power y.</returns>
+        public static long Pow(long x, int y)
+        {
+            var pow = 1L;
+
+            for (int i = 0; i < y; i++)
+                pow *= x;
+
+            return pow;
+        }
+
+        /// <summary>
+        /// 割り算する。（切り上げ）
+        /// </summary>
+        public static long Ceiling(long bloken, long divided) => bloken % divided == 0L ? bloken / divided : bloken / divided + 1L;
+
+        /// <summary>
+        /// 割り算する。（切り上げ）
+        /// </summary>
+        public static int Ceiling(int bloken, int divided) => (int)Ceiling((long)bloken, divided);
+    }
+
+    public static void DisableAutoFlush()
+    { Console.SetOut(new StreamWriter(Console.OpenStandardOutput()) { AutoFlush = false }); }
+
+    public static void Flush()
+    { Console.Out.Flush(); }
+}
 ```
