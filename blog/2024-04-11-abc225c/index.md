@@ -1,0 +1,161 @@
+---
+slug: abc225c
+title: AtCoder ABC 225 C - Calendar Validator
+authors: [tame]
+tags: [atcoder, abc]
+---
+
+行列 $$A$$ を可視化して構成条件を確認してみる。
+
+| $$i,j$$ |1|2|3|4|5|6|7|
+|-:|-:|-:|-:|-:|-:|-:|-:|
+|**1**|1|2|3|4|5|6|7|
+|**2**|8|9|10|11|12|13|14|
+|**3**|15|16|17|18|19|20|21|
+|**4**|22|23|24|25|26|27|28|
+|**5**|29|30|31|32|33|34|35|
+|**6**|36|37|38|39|40|41|42|
+||...|...|...|...|...|...|...|
+
+①一番左の列 $$(j=1)$$ の値を $$7$$ で割ったときの余りは $$1$$ で、一番右の列 $$j=7$$ の値を $$7$$ で割ったときの余りは $$0$$ である。
+$$
+j=1\Rightarrow(i-1)\times7+1\equiv1(\bmod{7})\\
+j=2\Rightarrow(i-1)\times7+2\equiv2(\bmod{7})\\
+j=3\Rightarrow(i-1)\times7+3\equiv3(\bmod{7})\\
+j=4\Rightarrow(i-1)\times7+4\equiv4(\bmod{7})\\
+j=5\Rightarrow(i-1)\times7+5\equiv5(\bmod{7})\\
+j=6\Rightarrow(i-1)\times7+6\equiv6(\bmod{7})\\
+j=7\Rightarrow(i-1)\times7+7\equiv0(\bmod{7})
+$$
+
+②連続する2行で同列の値の差は $$7$$ である。
+$$
+\{(i+1−1)×7+j\}-\{(i-1)×7+j\}=7
+$$
+
+③連続する2列で同行の値の差は $$1$$ である。
+$$
+\{(i−1)×7+j+1\}-\{(i-1)×7+j\}=1
+$$
+
+このことから、行列 $$B$$ について、以下の条件を満たすか確認すればよい。
+
+- ②③が成立する。
+- 1行目に $$7$$ で割ったときの余りが $$1$$ の値が存在する場合、その値は一番左の列に存在する。
+- 1行目に $$7$$ で割ったときの余りが $$0$$ の値が存在する場合、その値は一番右の列に存在する。
+
+[提出結果](https://atcoder.jp/contests/abc225/submissions/52233240)
+
+```csharp title="C#"
+using System.Text;
+
+public class Program
+{
+    public static void Main()
+    {
+        DisableAutoFlush();
+        Solve.Run();
+        Flush();
+    }
+
+    public static class Solve
+    {
+        public static void Run()
+        {
+            var inputs = ReadLineInts();
+            int iN = inputs[0], iM = inputs[1];
+            var iB = ReadLinesIntMatrix(iN);
+
+            for (int h = 0; h < iN; h++)
+                for (int w = 0; w < iM; w++)
+                {
+                    var tbool = true;
+
+                    if (h + 1 < iN)
+                        if (iB[h + 1][w] - iB[h][w] != 7)
+                            tbool = false;
+
+                    if (w + 1 < iM)
+                        if (iB[h][w + 1] - iB[h][w] != 1)
+                            tbool = false;
+
+                    if (h == 0 && iB[h][w] % 7 == 1)
+                        if (w != 0)
+                            tbool = false;
+
+                    if (h == 0 && iB[h][w] % 7 == 0)
+                        if (w != iM - 1)
+                            tbool = false;
+
+
+                    if (!tbool)
+                    {
+                        Console.WriteLine("No");
+                        return;
+                    }
+                }
+
+            Console.WriteLine("Yes");
+        }
+
+        // ----------------------------------------------------------------------------------------------------
+        // --- Readline
+        // ----------------------------------------------------------------------------------------------------
+        public static double ReadLineDouble() => double.Parse(ReadLineString());
+        public static double[] ReadLineDoubles() => ReadLineStrings().Select(double.Parse).ToArray();
+        public static double[] ReadLinesDoubles(int height) => Enumerable.Range(0, height).Select(_ => ReadLineDouble()).ToArray();
+        public static double[][] ReadLinesDoubleMatrix(int height) => Enumerable.Range(0, height).Select(_ => ReadLineDoubles()).ToArray();
+        public static decimal ReadLineDecimal() => decimal.Parse(ReadLineString());
+        public static decimal[] ReadLineDecimals() => ReadLineStrings().Select(decimal.Parse).ToArray();
+        public static decimal[] ReadLinesDecimals(int height) => Enumerable.Range(0, height).Select(_ => ReadLineDecimal()).ToArray();
+        public static decimal[][] ReadLinesDecimalMatrix(int height) => Enumerable.Range(0, height).Select(_ => ReadLineDecimals()).ToArray();
+        public static int ReadLineInt() => int.Parse(ReadLineString());
+        public static int[] ReadLineInts() => ReadLineStrings().Select(int.Parse).ToArray();
+        public static int[] ReadLinesInts(int height) => Enumerable.Range(0, height).Select(_ => ReadLineInt()).ToArray();
+        public static int[][] ReadLinesIntMatrix(int height) => Enumerable.Range(0, height).Select(_ => ReadLineInts()).ToArray();
+        public static long ReadLineLong() => long.Parse(ReadLineString());
+        public static long[] ReadLineLongs() => ReadLineStrings().Select(long.Parse).ToArray();
+        public static long[] ReadLinesLongs(int height) => Enumerable.Range(0, height).Select(_ => ReadLineLong()).ToArray();
+        public static long[][] ReadLinesLongMatrix(long height) => Enumerable.Range(0, (int)height).Select(_ => ReadLineLongs()).ToArray();
+        public static string ReadLineString() => Console.ReadLine().TrimStart().TrimEnd();
+        public static string[] ReadLineStrings() => Console.ReadLine().TrimStart().TrimEnd().Split();
+        public static string[] ReadLinesStrings(int height) => Enumerable.Range(0, height).Select(_ => ReadLineString()).ToArray();
+        public static string[][] ReadLinesStringMatrix(int height) => Enumerable.Range(0, height).Select(_ => ReadLineStrings()).ToArray();
+        public static char[][] ReadLinesCharMatrix(int height) => Enumerable.Range(0, height).Select(_ => ReadLineString().ToCharArray()).ToArray();
+
+        // ----------------------------------------------------------------------------------------------------
+        // --- Math
+        // ----------------------------------------------------------------------------------------------------
+
+        /// <summary>
+        /// Returns a specified number raised to the specified power.
+        /// </summary>
+        /// <returns>The number x raised to the power y.</returns>
+        public static long Pow(long x, int y)
+        {
+            var pow = 1L;
+
+            for (int i = 0; i < y; i++)
+                pow *= x;
+
+            return pow;
+        }
+
+        /// <summary>
+        /// 割り算する。（切り上げ）
+        /// </summary>
+        public static long Ceiling(long bloken, long divided) => bloken % divided == 0L ? bloken / divided : bloken / divided + 1L;
+
+        /// <summary>
+        /// 割り算する。（切り上げ）
+        /// </summary>
+        public static int Ceiling(int bloken, int divided) => (int)Ceiling((long)bloken, divided);
+    }
+
+    public static void DisableAutoFlush()
+    { Console.SetOut(new StreamWriter(Console.OpenStandardOutput()) { AutoFlush = false }); }
+
+    public static void Flush()
+    { Console.Out.Flush(); }
+}
+```
