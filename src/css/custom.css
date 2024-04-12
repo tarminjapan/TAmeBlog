@@ -35,6 +35,7 @@ kbd,
 pre,
 samp {
   font-family: 'IBM Plex Mono', 'IBM Plex Sans JP', monospace;
+  font-size: 0.8em;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
