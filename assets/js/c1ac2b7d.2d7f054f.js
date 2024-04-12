@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkt_ame_blog=self.webpackChunkt_ame_blog||[]).push([[7318],{5636:s=>{s.exports=JSON.parse('{"label":"docusaurus","permalink":"/TAmeBlog/blog/tags/docusaurus","allTagsPath":"/TAmeBlog/blog/tags","count":4,"unlisted":false}')}}]);

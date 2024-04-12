@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkt_ame_blog=self.webpackChunkt_ame_blog||[]).push([[427],{7587:l=>{l.exports=JSON.parse('{"label":"hello","permalink":"/TAmeBlog/blog/tags/hello","allTagsPath":"/TAmeBlog/blog/tags","count":2,"unlisted":false}')}}]);
