@@ -4,7 +4,7 @@
  * work well for content-centric websites.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Murecho:wght@100..900&family=PT+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+Mono:wght@100..900&display=swap');
 
 /* You can override the default Infima variables here. */
 :root {
@@ -18,7 +18,7 @@
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
-  font-family: 'Murecho';
+  font-family: 'Noto Sans JP';
 }
 
 h1,
@@ -27,14 +27,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Murecho';
+  font-family: 'Noto Sans JP';
 }
 
 code,
 kbd,
 pre,
 samp {
-  font-family: 'PT Mono', 'Murecho', monospace;
+  font-family: 'Noto Sans Mono', 'Noto Sans JP', monospace;
   font-size: 0.8em;
 }
 
