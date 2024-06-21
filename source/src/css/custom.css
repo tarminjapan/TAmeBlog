@@ -25,7 +25,7 @@
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
-  font-family: 'Noto Serif', "BIZ UDPMincho";
+  font-family: 'Noto Serif', "BIZ UDPMincho", serif;
 }
 
 h1,
@@ -40,7 +40,7 @@ h5,
 .h5,
 h6,
 .h6 {
-  font-family: 'Noto Serif', "BIZ UDPMincho";
+  font-family: 'Noto Serif', "BIZ UDPMincho", serif;
 }
 
 code,

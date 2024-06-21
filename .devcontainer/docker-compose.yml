@@ -1,0 +1,14 @@
+version: '3'
+services:
+  ubuntutameblog:
+    container_name: 'UbuntuTAmeBlog'
+    build: .
+    restart: always
+    working_dir: '/source'
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - type: bind
+        source: ../source
+        target: /source
