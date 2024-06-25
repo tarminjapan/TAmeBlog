@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkt_ame_blog=self.webpackChunkt_ame_blog||[]).push([[6041],{7899:e=>{e.exports=JSON.parse('{"permalink":"/TAmeBlog/blog/tags/docusaurus","page":1,"postsPerPage":10,"totalPages":1,"totalCount":4,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
