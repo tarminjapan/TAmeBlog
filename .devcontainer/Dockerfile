@@ -39,3 +39,5 @@ RUN npm install -g n
 RUN n lts
 RUN apt -y purge nodejs npm
 RUN apt -y autoremove
+#RUN apt -y install yarn
+RUN npm install -g yarn
