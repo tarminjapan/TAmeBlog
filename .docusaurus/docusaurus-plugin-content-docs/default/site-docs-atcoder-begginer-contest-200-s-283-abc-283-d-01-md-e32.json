@@ -1,0 +1,23 @@
+{
+  "id": "Atcoder Begginer Contest/200s/283/abc283d_01",
+  "title": "D - Scope",
+  "description": "URL",
+  "source": "@site/docs/Atcoder Begginer Contest/200s/283/abc283d_01.md",
+  "sourceDirName": "Atcoder Begginer Contest/200s/283",
+  "slug": "/Atcoder Begginer Contest/200s/283/abc283d_01",
+  "permalink": "/TAmeBlog/docs/Atcoder Begginer Contest/200s/283/abc283d_01",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "D - All Assign Point Add",
+    "permalink": "/TAmeBlog/docs/Atcoder Begginer Contest/200s/278/abc278d_01"
+  },
+  "next": {
+    "title": "C - Don’t be cycle",
+    "permalink": "/TAmeBlog/docs/Atcoder Begginer Contest/200s/288/abc288c_01"
+  }
+}

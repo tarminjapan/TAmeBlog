@@ -1,0 +1,22 @@
+{
+  "id": "intro",
+  "title": "Intro",
+  "description": "AtCoderの解説を載せています。解説は間違っているかもしれません。考え方のヒントくらいに思ってください。",
+  "source": "@site/docs/intro.md",
+  "sourceDirName": ".",
+  "slug": "/intro",
+  "permalink": "/TAmeBlog/docs/intro",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "8 Puzzle on Graph",
+    "permalink": "/TAmeBlog/docs/Atcoder Begginer Contest/200s/224/abc224c_01"
+  }
+}
