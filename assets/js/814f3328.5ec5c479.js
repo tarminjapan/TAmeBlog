@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkt_ame_blog=self.webpackChunkt_ame_blog||[]).push([[7472],{5513:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"AtCoder ABC284 C - Count Connected Components \u89e3\u8aac","permalink":"/TAmeBlog/blog/2025/04/01/2025/04/first","unlisted":false,"date":"2025-04-01T00:00:00.000Z"}]}')}}]);
