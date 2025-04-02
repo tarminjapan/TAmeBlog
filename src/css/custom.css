@@ -4,14 +4,8 @@
  * work well for content-centric websites.
  */
 
-/* Noto Serif */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
-
-/* Noto Sans JP, Noto Sans Mono */
+/* Noto Sans JP, Noto Serif JP, Noto Sans Mono */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+Mono:wght@100..900&family=Noto+Serif+JP:wght@200..900&display=swap');
-
-/* BIZ UDP明朝 */
-@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPMincho&family=Noto+Sans+JP:wght@100..900&family=Noto+Sans+Mono:wght@100..900&display=swap');
 
 /* You can override the default Infima variables here. */
 :root {
@@ -25,7 +19,7 @@
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
-  font-family: 'Noto Serif', "BIZ UDPMincho", serif;
+  font-family: 'Noto Serif JP', serif;
 }
 
 h1,
@@ -40,7 +34,7 @@ h5,
 .h5,
 h6,
 .h6 {
-  font-family: 'Noto Serif', "BIZ UDPMincho", serif;
+  font-family: 'Noto Serif JP', serif;
 }
 
 code,
