@@ -11,21 +11,38 @@ import { JSX } from 'react';
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
+    <header className={clsx(styles.heroBanner)}>
+      <div className={styles.heroContent}>
+        <Heading as="h1" className={styles.heroTitle}>
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
+        <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
+        <div className={styles.heroButtons}>
           <Link
-            className="button button--secondary button--lg"
+            className={clsx("button button--lg", styles.primaryButton)}
             to="/blog">
             最新の投稿を読む →
           </Link>
         </div>
       </div>
     </header>
+  );
+}
+
+function PurposeSection() {
+  return (
+    <section className={styles.purposeSection}>
+      <div className={styles.container}>
+        <Heading as="h2" className={styles.sectionTitle}>
+          思考の整理と技術的アウトプットの場
+        </Heading>
+        <p className={styles.sectionDescription}>
+          このブログは、私の思考を整理し、技術的な知見を効果的に共有するための場所です。
+          学びの記録と知識の体系化を通じて、より明確な思考と表現を目指しています。
+          また、AIツールも活用しながら、より効率的な知識の整理と深い洞察の獲得に取り組んでいます。
+        </p>
+      </div>
+    </section>
   );
 }
 
@@ -37,6 +54,7 @@ export default function Home(): JSX.Element {
       description="シンプルで洗練されたブログ・ナレッジベース">
       <HomepageHeader />
       <main>
+        <PurposeSection />
         <HomepageFeatures />
       </main>
     </Layout>

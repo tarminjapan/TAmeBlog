@@ -3,21 +3,198 @@
  * and scoped locally.
  */
 
+/* Hero Section */
 .heroBanner {
-  padding: 4rem 0;
+  padding: 8rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
-}
-
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.buttons {
+  background: linear-gradient(135deg, #000 0%, #222 100%);
+  color: white;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.heroButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.primaryButton {
+  background-color: white;
+  color: black;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 0.75rem 2rem;
+}
+
+.primaryButton:hover {
+  transform: scale(1.05);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Purpose Section */
+.purposeSection {
+  padding: 6rem 0;
+  background-color: white;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1d1d1f;
+}
+
+.sectionDescription {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #555;
+}
+
+/* Highlights Section */
+.highlightsSection {
+  padding: 6rem 0;
+  background-color: #f5f5f7;
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.highlightCard {
+  padding: 2rem;
+  text-align: center;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.highlightCard:hover {
+  transform: translateY(-8px);
+}
+
+.highlightTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #1d1d1f;
+}
+
+.highlightDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* CTA Section */
+.ctaSection {
+  padding: 6rem 0;
+  background-color: #000;
+  color: white;
+  text-align: center;
+}
+
+.ctaTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.ctaDescription {
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ctaButton {
+  background-color: white;
+  color: black;
+  border: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 0.75rem 2rem;
+}
+
+.ctaButton:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media screen and (max-width: 996px) {
+  .heroBanner {
+    padding: 4rem 0;
+    min-height: 60vh;
+  }
+
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.25rem;
+  }
+
+  .sectionTitle,
+  .ctaTitle {
+    font-size: 2rem;
+  }
+
+  .sectionDescription,
+  .ctaDescription {
+    font-size: 1rem;
+  }
+
+  .purposeSection,
+  .highlightsSection,
+  .ctaSection {
+    padding: 4rem 0;
+  }
 }

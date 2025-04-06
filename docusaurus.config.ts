@@ -95,7 +95,7 @@ const config: Config = {
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/tarminjapan/TAmeBlogNeo',
+          href: 'https://github.com/tarminjapan/TAmeBlog',
           label: 'GitHub',
           position: 'right',
         },
