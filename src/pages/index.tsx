@@ -19,7 +19,7 @@ function HomepageHeader() {
         <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
         <div className={styles.heroButtons}>
           <Link
-            className={clsx("button button--lg", styles.primaryButton)}
+            className="button button--secondary button--lg"
             to="/blog">
             最新の投稿を読む →
           </Link>
