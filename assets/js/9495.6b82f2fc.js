@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkt_ame_blog=self.webpackChunkt_ame_blog||[]).push([[9495],{9495:(e,a,s)=>{s.d(a,{createPieServices:()=>c.f});var c=s(9732);s(3579)}}]);
